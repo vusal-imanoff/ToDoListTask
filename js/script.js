@@ -1,27 +1,25 @@
-const addUser = document.querySelector(".adduser");
-const ul_list = document.querySelector(".list")
-const create_Li = li => {
-    const user_detail = `
-    <li class="li_list ">
-    <span>${li}</span>
-    <a href=""><i class="fa-solid fa-trash remove"></i></a>
-    </li>`;
+var btn=document.querySelector(".btn")
+btn.addEventListener("click",function(e) {
+    e.preventDefault()
+    var user=document.getElementById("user_name").value
+    document.getElementById("user_name").value=" "
+    var li=document.createElement("li")
+    li.classList.add("li_list")
+    var i = document.createElement("i")
+    i.classList.add("fa-solid")
+    i.classList.add("fa-trash")
+    i.classList.add("remove")
     
-    ul_list.innerHTML += user_detail;
-    console.log(user_detail);
-}
-let input = document.getElementById('username');
-input.addEventListener('submit', e => {
-    e.preventDefault();
-    const li = addUser.add.value.trim();
-    if (li.lenght) {
-        create_Li(li);
-        addUser.reset();
-    }
-});
-let ullist=document.getElementById('list')
-ullist.addEventListener('click', e => {
-    if (e.target.classList.contains("remove")) {
-        e.target.parentElement.remove();
-    };
+    li.innerHTML=`<span>${user}</span>`
+    li.appendChild(i);
+    var ul=document.querySelector(".list")
+    ul.appendChild(li)
+    i.addEventListener("click",function(e){
+
+        if(confirm("are you sure")){
+
+            ul.removeChild(e.target.parentElement)
+        }
+        
+    })
 })
